@@ -1,6 +1,8 @@
 package com.example.backend;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.function.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,12 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @SpringBootTest
-class BackendApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
+public class DbConnectionTest {
     @Autowired
     DataSource dataSource;
 
@@ -26,5 +23,4 @@ class BackendApplicationTests {
             System.out.println("username : " + connection.getMetaData().getUserName());
         }
     }
-
 }
