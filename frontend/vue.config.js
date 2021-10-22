@@ -6,4 +6,7 @@ module.exports = {
       ignored: '**/node_modules',
     },
   },
+  configureWebpack: {
+    devtool: 'source-map',
+  },
 };

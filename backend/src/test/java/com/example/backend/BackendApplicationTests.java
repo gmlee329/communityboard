@@ -14,17 +14,4 @@ class BackendApplicationTests {
     @Test
     void contextLoads() {
     }
-
-    @Autowired
-    DataSource dataSource;
-
-    @Test
-    public void testDbConnection() throws SQLException {
-        try(Connection connection = dataSource.getConnection()) {
-            System.out.println("dbcp : " + connection.getClass());
-            System.out.println("url : " + connection.getMetaData().getURL());
-            System.out.println("username : " + connection.getMetaData().getUserName());
-        }
-    }
-
 }
