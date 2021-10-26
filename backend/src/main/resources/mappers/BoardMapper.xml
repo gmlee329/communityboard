@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.board.repository.BoardMapper">
+    <select id="selectBoardList" resultType="BoardDto" parameterType="OptionDto">
+        select b.doc_no, b.title, b.content, b.writer, b.reg_dttm, b.view_count, b.reply_count
+        from (
+            select b.*, (@rownum := @rownum + 1) as rownum
+            from (
+                select b.*, (select count(*) from reply r where r.doc_no = b.doc_no) as reply_count
+                from board b
+                where
+                <if test="schType != null and schType != '' and schVal != null and schVal != ''">
+                    <choose>
+                        <when test="schType == 'docNo'">
+                            and b.doc_no = #{schVal}
+                        </when>
+                        <when test="schType == 'title'">
+                            and b.title like concat('%', #{schVal}, '%')
+                        </when>
+                        <when test="schType == 'writer'">
+                            and b.writer like concat('%', #{schVal}, '%')
+                        </when>
+                    </choose>
+                </if>
+                order by
+                <foreach collection="sort" item="sort" index="index" separator=",">
+                    #{sort}
+                </foreach>
+                ) b, (select @rownum := 0) temp
+            ) b
+        where rownum between #{startNo} and #{endNo}
+    </select>
+
+    <select id="selectBoardListCount" resultType="int" parameterType="OptionDto">
+        select count(*) as total_count
+        from board
+        where
+        <if test="schType != null and schType != '' and schVal != null and schVal != ''">
+            <choose>
+                <when test="schType == 'docNo'">
+                    and doc_no = #{schVal}
+                </when>
+                <when test="schType == 'title'">
+                    and title like concat('%', #{schVal}, '%')
+                </when>
+                <when test="schType == 'writer'">
+                    and writer like concat('%', #{schVal}, '%')
+                </when>
+            </choose>
+        </if>
+    </select>
+
+    <insert id="insertBoard" parameterType="BoardDto">
+        <selectKey resultType="int" keyProperty="docNo" order="BEFORE">
+            select ifnull(max(doc_no), 0) + 1 as doc_no from board
+        </selectKey>
+        insert into board (doc_no, title, content, writer)
+        values (#{docNo}, #{title}, #{content}, #{writer})
+    </insert>
+
+    <update id="updateBoard" parameterType="BoardDto">
+        update board
+        set title   = #{title},
+            content = #{content}
+        where doc_no = #{docNo}
+    </update>
+
+    <delete id="deleteBoard" parameterType="BoardDto">
+        delete
+        from board
+        where doc_no = #{docNo}
+    </delete>
+
+    <update id="updateBoardViewCount" parameterType="BoardDto">
+        update board
+        set view_count = view_count + 1
+        where doc_no = #{docNo}
+    </update>
+
+</mapper>
