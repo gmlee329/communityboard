@@ -1,14 +1,12 @@
-import { createApp } from 'vue';
-import axios from 'axios';
+import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
-axios.defaults.baseURL = 'http://localhost:8080';
+Vue.config.productionTip = false;
 
-// createApp(App).use(store).use(router).mount('#app');
-const app = createApp(App);
-
-app.config.globalProperties.axios = axios;
-
-app.use(store).use(router).mount('#app');
+new Vue({
+  router,
+  store,
+  render: (h) => h(App),
+}).$mount('#app');
