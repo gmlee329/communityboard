@@ -4,8 +4,8 @@ import Home from '../views/Home.vue';
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Main',
+    redirect: '/home',
   },
   {
     path: '/about',
@@ -14,6 +14,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+  },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('../views/error/404.vue'),
   },
 ];
 
