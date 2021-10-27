@@ -43,7 +43,6 @@ public class BoardService {
         return boardMapper.selectBoardById(boardDto);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public int insertBoard(BoardDto boardDto) throws Exception {
         int result = 0;
 
@@ -58,6 +57,7 @@ public class BoardService {
         return boardMapper.updateBoard(boardDto);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public int deleteBoard(BoardDto boardDto) throws Exception {
         ReplyDto replyDto = new ReplyDto();
         replyDto.setDocNo(boardDto.getDocNo());

@@ -12,13 +12,13 @@
         <selectKey resultType="int" keyProperty="replyNo" order="BEFORE">
             select ifnull(max(reply_no), 0) + 1 as reply_no from reply where doc_no = #{docNo}
         </selectKey>
-        insert into reply (reply_no, doc_no, writer, content)
-        values (#{replyNo}, #{docNo}, #{writer}, #{content})
+        insert into reply (reply_no, doc_no, writer, comment)
+        values (#{replyNo}, #{docNo}, #{writer}, #{comment})
     </insert>
 
     <update id="updateReply" parameterType="ReplyDto">
         update reply
-        set content = #{content}
+        set comment = #{comment}
         where reply_no = #{replyNo}
           and doc_no = #{docNo}
     </update>

@@ -22,5 +22,6 @@ public class InitialRunner implements ApplicationRunner {
             log.info("url : " + connection.getMetaData().getURL());
             log.info("dbcp : " + connection.getMetaData().getUserName());
         }
+        log.info("db connection success");
     }
 }

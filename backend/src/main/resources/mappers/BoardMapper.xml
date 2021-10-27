@@ -9,25 +9,27 @@
             from (
                 select b.*, (select count(*) from reply r where r.doc_no = b.doc_no) as reply_count
                 from board b
-                where
-                <if test="schType != null and schType != '' and schVal != null and schVal != ''">
-                    <choose>
-                        <when test="schType == 'docNo'">
-                            and b.doc_no = #{schVal}
-                        </when>
-                        <when test="schType == 'title'">
-                            and b.title like concat('%', #{schVal}, '%')
-                        </when>
-                        <when test="schType == 'writer'">
-                            and b.writer like concat('%', #{schVal}, '%')
-                        </when>
-                    </choose>
-                </if>
-                order by
-                <foreach collection="sort" item="sort" index="index" separator=",">
-                    #{sort}
-                </foreach>
-                ) b, (select @rownum := 0) temp
+                <where>
+                    <if test="schType != null and schType != '' and schVal != null and schVal != ''">
+                        <choose>
+                            <when test="schType == 'docNo'">
+                                and b.doc_no = #{schVal}
+                            </when>
+                            <when test="schType == 'title'">
+                                and b.title like concat('%', #{schVal}, '%')
+                            </when>
+                            <when test="schType == 'writer'">
+                                and b.writer like concat('%', #{schVal}, '%')
+                            </when>
+                        </choose>
+                    </if>
+                </where>
+                ) b,
+                (select @rownum := 0) temp
+            order by
+            <foreach collection="sort" item="sort" index="index" separator=",">
+                ${sort}
+            </foreach>
             ) b
         where rownum between #{startNo} and #{endNo}
     </select>
@@ -35,20 +37,27 @@
     <select id="selectBoardListCount" resultType="int" parameterType="OptionDto">
         select count(*) as total_count
         from board
-        where
-        <if test="schType != null and schType != '' and schVal != null and schVal != ''">
-            <choose>
-                <when test="schType == 'docNo'">
-                    and doc_no = #{schVal}
-                </when>
-                <when test="schType == 'title'">
-                    and title like concat('%', #{schVal}, '%')
-                </when>
-                <when test="schType == 'writer'">
-                    and writer like concat('%', #{schVal}, '%')
-                </when>
-            </choose>
-        </if>
+        <where>
+            <if test="schType != null and schType != '' and schVal != null and schVal != ''">
+                <choose>
+                    <when test="schType == 'docNo'">
+                        and doc_no = #{schVal}
+                    </when>
+                    <when test="schType == 'title'">
+                        and title like concat('%', #{schVal}, '%')
+                    </when>
+                    <when test="schType == 'writer'">
+                        and writer like concat('%', #{schVal}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBoardById" resultType="BoardDto" parameterType="BoardDto">
+        select b.*, (select count(*) from reply r where r.doc_no = b.doc_no) as reply_count
+        from board b
+        where b.doc_no = #{docNo}
     </select>
 
     <insert id="insertBoard" parameterType="BoardDto">

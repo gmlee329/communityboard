@@ -7,6 +7,6 @@ public class ReplyDto {
     private int replyNo;
     private int docNo;
     private String writer;
-    private String content;
+    private String comment;
     private String regDttm;
 }
