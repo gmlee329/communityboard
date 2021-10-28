@@ -1,6 +1,6 @@
 ### Architecture
 
-<img src="./frontend/assets/architecture.png">
+![architecture](./frontend/src/assets/architecture.png)
 
 ### 메뉴 목록
 
