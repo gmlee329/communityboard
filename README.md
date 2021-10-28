@@ -52,7 +52,6 @@
     - Header
     - Editor
     - Button
-    - Tooltip
     - Snackbar (Alert)
     - Pageviewer
 - 게시판 컴포넌트 구성
@@ -68,7 +67,8 @@
         - WriteView
         - DetailView
         - EditView
-
+- axios api 구성
+- App.vue 구성
 ---
 
 ### 애플리케이션 테스트
