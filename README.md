@@ -2,6 +2,8 @@
 
 ![architecture](./frontend/src/assets/architecture.png)
 
+---
+
 ### 메뉴 목록
 
 - Home
