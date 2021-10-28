@@ -105,6 +105,7 @@ export default {
       ],
       schType: '',
       schVal: '',
+      blo: {},
     };
   },
   mounted() {
@@ -169,6 +170,11 @@ export default {
       });
     },
     onClickRow(event, data) {
+      this.$store.commit('SET_BOARD_LIST_OPTION', {
+        show: true,
+        msg: 'Delete Complete',
+        color: 'error',
+      });
       this.movePage(`/board/${data.item.docNo}`);
     },
   },

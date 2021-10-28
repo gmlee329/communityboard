@@ -12,24 +12,10 @@ export default new Vuex.Store({
       msg: '',
       color: '',
     },
-    blo: {
-      options: {
-        multiSort: true,
-        sortBy: [],
-        sortDesc: [],
-        page: 1,
-        itemsPerPage: 5,
-      },
-      schType: '',
-      schVal: '',
-    },
   },
   mutations: {
     [SET_SNACKBAR](state, sb) {
       state.sb = sb;
-    },
-    [SET_BOARD_LIST_OPTION](state, blo) {
-      state.blo = blo;
     },
   },
   actions: {

@@ -191,7 +191,7 @@ export default {
       }
     },
     replySave() {
-      if (this.comment !== null && this.comment.trim() !== null) {
+      if (this.comment !== null && this.comment.trim() !== '') {
         postReplyAPI(this.docNo,
           {
             comment: this.comment,
