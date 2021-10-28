@@ -101,7 +101,7 @@ public class BoardController {
     }
 
     @DeleteMapping("{docNo}/replies/{replyNo}")
-    public int updateReply(@PathVariable int docNo, @PathVariable int replyNo) throws Exception {
+    public int deleteReply(@PathVariable int docNo, @PathVariable int replyNo) throws Exception {
         ReplyDto replyDto = new ReplyDto();
         replyDto.setDocNo(docNo);
         replyDto.setReplyNo(replyNo);
