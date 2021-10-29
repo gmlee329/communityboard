@@ -5,7 +5,7 @@
 ---
 
 ### Demo URL
-[Demo page](http://ec2-13-209-77-8.ap-northeast-2.compute.amazonaws.com/?target=_blank)
+[Demo page](http://ec2-13-209-77-8.ap-northeast-2.compute.amazonaws.com)
 
 ---
 
