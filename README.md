@@ -4,6 +4,11 @@
 
 ---
 
+### Demo URL
+[Demo page](http://ec2-13-209-77-8.ap-northeast-2.compute.amazonaws.com)
+
+---
+
 ### 메뉴 목록
 
 - Home
@@ -16,7 +21,11 @@
 - 게시판 목록 조회, 글 상세 정보 조회
 - 게시글 작성, 수정, 삭제
 - 댓글 작성, 수정, 삭제
-- 조회수 표시
+- 조회수 표시, 댓글 수 표시
+- 항목별 검색 기능
+- 항목별 정렬 기능
+- 페이징 처리
+- 페이지 이동시 데이터 유지
 - 에러 처리
 
 ---
@@ -41,16 +50,14 @@
 ### Spring Boot API 개발
 
 - dependency 설정 및 properties 설정
-- DTO class 생성
-- Controller 생성
-- Repository 생성
-- Service 생성
-- MyBatis mapper xml 파일 생성
+- DTO class 구현
+- Controller 구현
+- Repository 구현
+- Service 구현
+- MyBatis sql mapper 구현
 - API Test
 
 ---
-
-
 
 ### Vue client app 개발
 
@@ -74,6 +81,12 @@
         - DetailView
         - EditView
 - axios api 구성
+- plugin 구성
+    - vuetify
+    - dialog
+    - page move function
+- router 구성
+- store 구성
 - App.vue 구성
 ---
 

@@ -10,7 +10,7 @@ page.install = function (Vue) {
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.prevPage = function () {
     // eslint-disable-next-line no-unused-expressions
-    window.history.length > 1 ? window.history.go(-1) : this.$router.push('/');
+    window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/');
   };
   // eslint-disable-next-line no-param-reassign
   Vue.prototype.refresh = function () {

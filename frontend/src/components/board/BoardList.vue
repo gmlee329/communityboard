@@ -59,7 +59,7 @@
       </v-card-text>
       <v-card-text align="right">
         <Button
-          @click="movePage('/board/write')"
+          @click="onClickWrite"
           color="green"
           rounded
           small
@@ -176,10 +176,7 @@ export default {
       });
     },
     onClickRow(event, data) {
-      this.$store.state.blo.options = this.options;
-      this.$store.state.blo.schType = this.schType;
-      this.$store.state.blo.schVal = this.schVal;
-      this.$store.state.blo.isFromDetail = true;
+      this.setBloOptions();
       const newBlo = this.blo;
       this.setBoardListOptions(newBlo);
       this.movePage(`/board/${data.item.docNo}`);
@@ -187,6 +184,16 @@ export default {
     ...mapMutations({
       setBoardListOptions: 'setBoardListOptions',
     }),
+    onClickWrite() {
+      this.setBloOptions();
+      this.movePage('/board/write');
+    },
+    setBloOptions() {
+      this.$store.state.blo.options = this.options;
+      this.$store.state.blo.schType = this.schType;
+      this.$store.state.blo.schVal = this.schVal;
+      this.$store.state.blo.isFromDetail = true;
+    },
   },
   computed: {
     ...mapState([
