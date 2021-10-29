@@ -82,9 +82,9 @@ export default {
           })
           .then((response) => {
             if (response.data > 0) {
-              this.$store.commit('SET_SNACKBAR', {
+              this.$store.commit('setSnackbar', {
                 show: true,
-                msg: 'Edit Complete',
+                msg: '수정 완료',
                 color: 'warning',
               });
               this.movePage(`/board/${docNo}`);

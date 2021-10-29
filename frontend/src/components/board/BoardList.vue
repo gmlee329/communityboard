@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
 import { getBoardListAPI } from '@/api/index';
 
 export default {
@@ -105,7 +106,6 @@ export default {
       ],
       schType: '',
       schVal: '',
-      blo: {},
     };
   },
   mounted() {
@@ -136,6 +136,11 @@ export default {
         });
     },
     getBoardList() {
+      if (this.$store.state.blo.isFromDetail) {
+        this.options = this.$store.state.blo.options;
+        this.schType = this.$store.state.blo.schType;
+        this.schVal = this.$store.state.blo.schVal;
+      }
       const vm = this;
       this.loading = true;
       // eslint-disable-next-line
@@ -167,16 +172,26 @@ export default {
             this.totalCount = total;
           },
         );
+        this.$store.state.blo.isFromDetail = false;
       });
     },
     onClickRow(event, data) {
-      this.$store.commit('SET_BOARD_LIST_OPTION', {
-        show: true,
-        msg: 'Delete Complete',
-        color: 'error',
-      });
+      this.$store.state.blo.options = this.options;
+      this.$store.state.blo.schType = this.schType;
+      this.$store.state.blo.schVal = this.schVal;
+      this.$store.state.blo.isFromDetail = true;
+      const newBlo = this.blo;
+      this.setBoardListOptions(newBlo);
       this.movePage(`/board/${data.item.docNo}`);
     },
+    ...mapMutations({
+      setBoardListOptions: 'setBoardListOptions',
+    }),
+  },
+  computed: {
+    ...mapState([
+      'blo',
+    ]),
   },
 };
 </script>

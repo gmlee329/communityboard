@@ -66,9 +66,9 @@ export default {
         })
           .then((response) => {
             if (response.data > 0) {
-              this.$store.commit('SET_SNACKBAR', {
+              this.$store.commit('setSnackbar', {
                 show: true,
-                msg: 'Insert Complete',
+                msg: '저장 완료',
                 color: 'success',
               });
               this.movePage(`/board/${response.data}`);

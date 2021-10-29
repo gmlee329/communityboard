@@ -177,9 +177,9 @@ export default {
         deleteBoardAPI(this.docNo)
           .then((response) => {
             if (response.data > 0) {
-              this.$store.commit('SET_SNACKBAR', {
+              this.$store.commit('setSnackbar', {
                 show: true,
-                msg: 'Delete Complete',
+                msg: '삭제 완료',
                 color: 'error',
               });
               this.movePage('/board');
