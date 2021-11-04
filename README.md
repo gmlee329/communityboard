@@ -4,6 +4,13 @@
 
 ---
 
+### 구현 화면
+
+Intro
+
+<img src="./frontend/src/assets/intro.png" />
+---
+
 ### Demo URL
 [Demo page](http://ec2-13-209-77-8.ap-northeast-2.compute.amazonaws.com)
 
