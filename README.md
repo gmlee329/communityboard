@@ -6,9 +6,26 @@
 
 ### 구현 화면
 
-Intro
+####Intro
 
-<img src="./frontend/src/assets/intro.png" />
+![intro](./frontend/src/assets/intro.png)
+
+####Board list
+
+![board_list](./frontend/src/assets/board_list.png)
+
+####Board detail
+
+![board_detail](./frontend/src/assets/board_detail.png)
+
+####Board edit
+
+![board_edit](./frontend/src/assets/board_edit.png)
+
+####Board write
+
+![board_write](./frontend/src/assets/board_write.png)
+
 ---
 
 ### Demo URL
